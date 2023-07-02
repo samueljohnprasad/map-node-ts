@@ -8,6 +8,11 @@ const cors = require("cors");
 const app = (0, express_1.default)();
 app.use(cors());
 const port = process.env.PORT || 8080;
+app.use((_, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+    next();
+});
 app.get('/', (_req, res) => {
     return res.send('Express Typescript on Vercel');
 });
